@@ -1,0 +1,23 @@
+{
+  "players": [
+    {
+      "name": "Ivan",
+      "growth": 196,
+      "age": 33,
+      "position": ["Middle Hitter", "Setter", "Opposite"]
+    },
+    {
+      "name": "Viktor",
+      "growth": 202,
+      "age": 25,
+      "position": ["Outside", "Setter"]
+    },
+    {
+      "name": "Igor",
+      "growth": 210,
+      "age": 19,
+      "position": ["libero"]
+    }
+  ]
+
+}
