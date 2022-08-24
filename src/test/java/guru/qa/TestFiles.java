@@ -3,9 +3,10 @@ package guru.qa;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
+import guru.qa.domain.VolleyballPlayer;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -95,14 +96,11 @@ public class TestFiles {
         }
     }
 
-
     @Test
-    void jsonTestPlayer() {
+    void jsonTestPlayer() throws IOException {
         InputStream is = classLoader.getResourceAsStream("player.json");
-        Gson gson = new Gson();
-        JsonObject jsonObject = gson.fromJson(new InputStreamReader(is), JsonObject.class);
-        assertThat(jsonObject.get("players").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString()).isEqualTo("Ivan");
-        assertThat(jsonObject.get("players").getAsJsonArray().get(1).getAsJsonObject().get("growth").getAsInt()).isEqualTo(202);
-        assertThat(jsonObject.get("players").getAsJsonArray().get(2).getAsJsonObject().get("age").getAsInt()).isEqualTo(19);
+        ObjectMapper objectMapper = new ObjectMapper();
+        VolleyballPlayer player = objectMapper.readValue(is, VolleyballPlayer.class);
+        assertThat(player.getSport()).isEqualTo("volleyball");
     }
 }
